@@ -257,6 +257,31 @@ run_migrations_offline, run_migrations_online and target_metadata. Will be discu
 
 Although, it works perfectly fine, if you want alembic to detect your models automatically even without importing it individually on alembic env.py file we can tweak our above code slightly.
 
+There are 2 ways to do this:
+
+**Method 1:** 
+We will add models class to __init__.py
+In the example attached, we add:
+```python
+# src/models/__init__.py
+from .user import User
+...
+# add more model class bellow this.
+```
+
+In env.py: Replace models imported to all 
+```python
+# Replace 
+from src.models import User
+# to
+from src.models import *
+
+...
+# add more model class bellow this.
+```
+
+
+**Method 2:** 
 Create a folder named config and add a settings.py file on it.
 
 ```python
